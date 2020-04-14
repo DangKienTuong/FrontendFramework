@@ -8,7 +8,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Creative - Start Bootstrap Theme</title>
+    <title>FPOLY CMS</title>
     <!-- Font Awesome icons (free version)-->
     <script
       src="https://use.fontawesome.com/releases/v5.12.1/js/all.js"
@@ -204,49 +204,19 @@
 
     <section>
       <div class="row">
-        <div class="col-sm-3" style="margin: 20px;">
+        <div class="col-sm-3" style="margin: 20px;" ng-repeat="x in subjects">
           <div
             class="card"
             style="width: 18rem;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
                 "
           >
             <img
-              src="images/subject/android_nangcao.png"
+              src="images/subject/{{x.Logo}}"
               style="height: 150px;"
-              alt=""
+              alt="{{x.Logo}}"
             />
             <div class="card-body">
-              <h5 class="card-title">Lập Trình Android nâng cao</h5>
-              <a href="#" class="btn btn-primary">Test</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-3" style="margin: 20px;">
-          <div
-            class="card"
-            style="width: 18rem;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-                "
-          >
-            <img src="images/subject/web.jpg" style="height: 150px;" alt="" />
-            <div class="card-body">
-              <h5 class="card-title">Xây dựng trang web</h5>
-              <a href="#" class="btn btn-primary">Test</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-4" style="margin: 20px;">
-          <div
-            class="card"
-            style="width: 18rem;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-                "
-          >
-            <img
-              src="images/subject/database (1).jpg"
-              style="height: 150px;"
-              alt=""
-            />
-            <div class="card-body">
-              <h5 class="card-title">Cơ sở dữ liệu</h5>
+              <h5 class="card-title">{{x.Name}}</h5>
               <a href="#" class="btn btn-primary">Test</a>
             </div>
           </div>
@@ -255,20 +225,6 @@
       <br>
       <br>
       <br>
-      <div class="row">
-        <div class="col-sm-6"></div>
-        <div class="col-sm-3">
-          <ul class="pagination">
-            <li><a href="all.html">&laquo;</a></li>
-            <li><a class="active" href="all.html">1</a></li>
-            <li><a href="all2.html">2</a></li>
-            <li><a href="all3.html">3</a></li>
-            <li><a href="all4.html">4</a></li>
-            <li><a href="all4.html">&raquo;</a></li>
-          </ul>
-        </div>
-        <br><br>
-      </div>
       <!--Pagination-->
 
       <!-- End Pagination -->

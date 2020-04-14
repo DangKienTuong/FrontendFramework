@@ -8,7 +8,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Creative - Start Bootstrap Theme</title>
+    <title>FPOLY CMS</title>
     <!-- Font Awesome icons (free version)-->
     <script
       src="https://use.fontawesome.com/releases/v5.12.1/js/all.js"
@@ -58,6 +58,27 @@
         $http.get('db/Subjects.js').then(function(response){
           $scope.subjects = response.data;
         });
+        $http.get('db/Students.js').then(function(response){
+          $scope.students = response.data;
+        });
+
+        $scope.user = {};
+
+        $scope.signup = function(){
+          $scope.students.push($scope.user);
+        };
+        $scope.login = function(){
+          var i;
+          for(i=0; i <$scope.students.length; i++){
+            if($scope.students[i].username == $scope.user.username && $scope.students[i].password == $scope.user.password){
+              window.location.href = "index.html";
+              return 1;
+            }else{
+              window.location.href = "error-404/index.html";
+            }
+          }
+          return 0;
+        }
       });
     </script>
   </head>
@@ -214,6 +235,31 @@
                       </div>
         
                       <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin my-5">
+                  <div class="card-body">
+                    <h5 class="card-title text-center">Login</h5>
+                    <form class="form-signin">
+                      <div class="form-label-group">
+                        <input type="text" id="inputUser" ng-model="user.username" class="form-control" placeholder="Username" required autofocus>
+                        <label for="inputUser">Username</label>
+                      </div>
+        
+                      <div class="form-label-group">
+                        <input type="password" ng-model="user.password" id="inputPasswordL" class="form-control" placeholder="Password" required>
+                        <label for="inputPasswordL">Password</label>
+                      </div>
+        
+                      <div class="custom-control custom-checkbox mb-3">
+                        <a href="reset.html">Forgot password</a>
+                      </div>
+                      <button  ng-click="login()" class="btn btn-lg btn-primary btn-block text-uppercase">Login</button>
                     </form>
                   </div>
                 </div>

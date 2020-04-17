@@ -53,11 +53,34 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
     <script>
-      var app = angular.module('myApp',[]);
-      app.controller('myController', function($scope,$http){
-        $http.get('db/Subjects.js').then(function(response){
+      var app = angular.module("myApp", []);
+      app.controller("myController", function ($scope, $http) {
+        $http.get("db/Subjects.js").then(function (response) {
           $scope.subjects = response.data;
         });
+        $http.get("db/Students.js").then(function (response) {
+          $scope.students = response.data;
+        });
+
+        $scope.user = {};
+
+        $scope.changepass = function () {
+          var i;
+          for (i = 0; i < $scope.students.length; i++) {
+            if (
+              $scope.students[i].username == $scope.user.username &&
+              $scope.students[i].password == $scope.user.oldpassword &&
+              $scope.user.password == $scope.user.repassword
+            ) {
+              $scope.students[i] = $scope.user;
+              window.location.href = "login.html";
+              return 1;
+            } else {
+              window.location.href = "changepass.html";
+            }
+          }
+          return 0;
+        };
       });
     </script>
   </head>
@@ -81,11 +104,10 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <!-- Example single danger button -->
-        <div  class="btn-group" style="padding-right: 10px;">
-         
+        <div class="btn-group" style="padding-right: 10px;">
           <button
             type="button"
-            class="btn btn-danger dropdown-toggle" 
+            class="btn btn-danger dropdown-toggle"
             id="dropdownMenuButton"
             data-toggle="dropdown"
             aria-haspopup="true"
@@ -93,16 +115,26 @@
           >
             Explore
           </button>
-          <div class="dropdown-menu" style="max-height:400px;overflow-y:auto;">
+          <div
+            class="dropdown-menu"
+            style="max-height: 400px; overflow-y: auto;"
+          >
             <button
               type="button"
               class="btn btn-danger"
               onclick="window.location.href = 'all.html';"
-              style="padding: 12px 30px 12px 30px; position: relative; left: 10%; margin: 20px;"
+              style="
+                padding: 12px 30px 12px 30px;
+                position: relative;
+                left: 10%;
+                margin: 20px;
+              "
             >
               Explore all courses
             </button>
-            <a class="dropdown-item" ng-repeat="x in subjects" href="#">{{x.Name}}</a>
+            <a class="dropdown-item" ng-repeat="x in subjects" href="#"
+              >{{x.Name}}</a
+            >
           </div>
         </div>
         <form class="form-inline">
@@ -165,8 +197,7 @@
       </div>
     </nav>
     <!-- Masthead-->
-    <header class="masthead">
-    </header>
+    <header class="masthead"></header>
 
     <section>
       <div class="container">
@@ -181,6 +212,7 @@
                 <form class="form-signin">
                   <div class="form-label-group">
                     <input
+                      ng-model="user.username"
                       type="text"
                       id="inputUserame"
                       class="form-control"
@@ -193,6 +225,7 @@
 
                   <div class="form-label-group">
                     <input
+                      ng-model="user.email"
                       type="email"
                       id="inputEmail"
                       class="form-control"
@@ -206,6 +239,7 @@
 
                   <div class="form-label-group">
                     <input
+                      ng-model="user.oldpassword"
                       type="password"
                       id="inputPassword"
                       class="form-control"
@@ -217,10 +251,11 @@
 
                   <div class="form-label-group">
                     <input
+                      ng-model="password"
                       type="password"
                       id="inputPassword1"
                       class="form-control"
-                      placeholder="Password"
+                      placeholder="New Password"
                       required
                     />
                     <label for="inputPassword1">New Password</label>
@@ -228,6 +263,7 @@
 
                   <div class="form-label-group">
                     <input
+                      ng-model="repassword"
                       type="password"
                       id="inputConfirmPassword"
                       class="form-control"
@@ -239,7 +275,7 @@
 
                   <button
                     class="btn btn-lg btn-primary btn-block text-uppercase"
-                    type="submit"
+                    ng-click="changepass()"
                   >
                     Register
                   </button>
@@ -273,7 +309,7 @@
     <script src="vendor/tilt/tilt.jquery.min.js"></script>
     <script>
       $(".js-tilt").tilt({
-        scale: 1.1
+        scale: 1.1,
       });
     </script>
 

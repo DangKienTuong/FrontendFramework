@@ -1,212 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="myApp">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>FPOLY CMS</title>
 
-    <!-- Font Awesome icons (free version)-->
-    <script
-      src="https://use.fontawesome.com/releases/v5.12.1/js/all.js"
-      crossorigin="anonymous"
-    ></script>
-    <!-- Google fonts-->
-    <link
-      href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic"
-      rel="stylesheet"
-      type="text/css"
-    />
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
-
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet" />
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
-    <script>
-      var app = angular.module("myApp", []);
-      app.controller("myController", function ($scope, $http,$interval) {
-        $http.get("db/Subjects.js").then(function (response) {
-          $scope.subjects = response.data;
-        });
-        $http.get("db/Quizs/ADAV.js").then(function (response) {
-          $scope.quizs = response.data;
-        });
-
-        //tính điểm
-        $scope.tong_diem=0;
-        $scope.tinh_diem= function (diem_cua_cau_hoi,dap_an,tra_loi){
-          if(dap_an == tra_loi){
-            $scope.tong_diem += diem_cua_cau_hoi;
-          }
-        };
-
-        //đồng hồ
-        $scope.phut = 1;
-        $scope.giay = 59;
-        $interval(function(giay){
-          $scope.time = ($scope.phut<10)?('0'+$scope.phut.toString()):$scope.phut.toString();
-          $scope.time += ":";
-          $scope.time += ($scope.giay<10)?('0'+$scope.giay.toString()):$scope.giay.toString();
-          $scope.giay -= 1;
-          if($scope.giay == 0){
-            if($scope.phut == 0){
-            window.location.href = "index.html";
-          }else{
-            $scope.phut -= 1;
-            $scope.giay = 59;
-          }
-          }
-          
-        },1000);
-      });
-    </script>
-  </head>
-  <body id="page-top" ng-controller="myController">
-    <!-- Navigation-->
-    <nav
-      class="navbar navbar-expand-lg navbar-light fixed-top py-3"
-      id="mainNav"
-    >
-      <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">FPOLY CMS</a
-        ><button
-          class="navbar-toggler navbar-toggler-right"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarResponsive"
-          aria-controls="navbarResponsive"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <!-- Example single danger button -->
-        <div class="btn-group" style="padding-right: 10px;">
-          <button
-            type="button"
-            class="btn btn-danger dropdown-toggle"
-            id="dropdownMenuButton"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Explore
-          </button>
-          <div
-            class="dropdown-menu"
-            style="max-height: 400px; overflow-y: auto;"
-          >
-            <button
-              type="button"
-              class="btn btn-danger"
-              onclick="window.location.href = 'all.html';"
-              style="
-                padding: 12px 30px 12px 30px;
-                position: relative;
-                left: 10%;
-                margin: 20px;
-              "
-            >
-              Explore all courses
-            </button>
-            <a class="dropdown-item" ng-repeat="x in subjects" href="#"
-              >{{x.Name}}</a
-            >
-          </div>
-        </div>
-
-        <form class="form-inline">
-          <input
-            class="form-control mr-sm-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <button class="btn btn-danger my-2 my-sm-0" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-        </form>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto my-2 my-lg-0">
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdownMenuLink"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Account
-              </a>
-              <div
-                class="dropdown-menu"
-                aria-labelledby="navbarDropdownMenuLink"
-              >
-                <a class="dropdown-item" href="signup.html">Sign up</a>
-                <a class="dropdown-item" href="login.html">Login</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="index.html">Sign out</a>
-                <a class="dropdown-item" href="changepass.html"
-                  >Change password</a
-                >
-                <a class="dropdown-item" href="update.html">Update Account</a>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#faq">FAQ</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="feedback.html"
-                >Feedback</a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <!-- Masthead-->
-    <header class="masthead">
-      <div class="container h-100">
-        <div
-          class="row h-100 align-items-center justify-content-center text-center"
-        >
-          <div class="col-lg-10 align-self-end">
-            <h1 class="text-uppercase text-white font-weight-bold">
-              Making your test
-            </h1>
-            <hr class="divider my-4" />
-          </div>
-          <div class="col-lg-8 align-self-baseline">
-            <p class="text-white-75 font-weight-light mb-5">
-              Good luck
-            </p>
-          </div>
-        </div>
-      </div>
-    </header>
     <!-- About section-->
     <section class="page-section">
       <div class="container">
@@ -228,7 +20,7 @@
         </div>
         <div class="card-body">
           <div ng-repeat="quiz in quizs">
-            <div class="alert alert-info">{{$index+1}}. {{quiz.Text}}</div>
+            <div class="alert alert-4">{{$index+1}}. {{quiz.Text}}</div>
             <div class="pl-3" ng-repeat="ans in quiz.Answers">
               <div class="form-check">
                 <input
@@ -244,21 +36,13 @@
           </div>
         </div>
         <div class="card-footer font-weight-bold">
-          TỔNG ĐIỂM: {{tong_diem}}/{{quizs.length}}
+          TỔNG ĐIỂM:
+          <span class="badge badge-pill badge-success">{{tong_diem}}/{{quizs.length}}</span>
         </div>
       </div>
     </div>
   </div>
     </section>
-    <!-- Footer-->
-    <footer class="bg-light py-5">
-      <div class="container">
-        <div class="small text-center text-muted">
-          PS09298 - ĐẶNG KIẾN TƯỜNG
-        </div>
-      </div>
-    </footer>
 
-    <!-- Bootstrap core JS-->
-  </body>
-</html>
+
+   

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>FPOLY CMS</title>
+    <!-- Font Awesome icons (free version)-->
+    <script
+      src="https://use.fontawesome.com/releases/v5.12.1/js/all.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Google fonts-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- Third party plugin CSS-->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"
+      rel="stylesheet"
+    />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css" />
+    <link rel="stylesheet" type="text/css" href="css/pagination.css" />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="vendor/css-hamburgers/hamburgers.min.css"
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="vendor/select2/select2.min.css"
+    />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="css/login.css" />
+    <link rel="stylesheet" type="text/css" href="css/util.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/signup.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <!-- Third party plugin JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+
+    <!--===============================================================================================-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/tilt/tilt.jquery.min.js"></script>
+    <script>
+      $(".js-tilt").tilt({
+        scale: 1.1,
+      });
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "UA-23581568-13");
+    </script>
+
+    <!--===============================================================================================-->
+    <script src="js/main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular-route.js"></script>
+    
+  <script src="js/controller/indexCtrl.js"></script>
+    <script>
+      var app = angular.module("myApp", ["ngRoute"]);
+      app.controller("myController", function ($scope, $http) {
+    $http.get("db/Subjects.js").then(function (response) {
+  $scope.subjects = response.data;
+});
+  });
+      app.config(function($routeProvider){
+          $routeProvider
+          .when("/index",{
+                templateUrl: "index.html?"+Math.random()
+            })
+            .when("/all",{
+                templateUrl: "all.html?"+Math.random()
+            })
+            .when("/feedback",{
+                templateUrl: "feedback.html?"+Math.random()
+            })
+            .when("/changepass",{
+                templateUrl: "changepass.html?"+Math.random(),
+                controller: "changepassCtrl"
+            })
+            .when("/login",{
+                templateUrl: "login.html?"+Math.random(),
+                controller: "loginCtrl"
+            })
+            .when("/reset",{
+                templateUrl: "reset.html?"+Math.random(),
+                controller: "resetCtrl"
+            })
+            .when("/signup",{
+                templateUrl: "signup.html?"+Math.random(),
+                controller: "signupCtrl"
+            })
+            .when("/signup",{
+                templateUrl: "signup.html?"+Math.random(),
+                controller: "signupCtrl"
+            })
+            .when("/test",{
+                templateUrl: "test.html?"+Math.random(),
+                controller: "testCtrl"
+            })
+            .when("/update",{
+                templateUrl: "update.html?"+Math.random(),
+                controller: "updateCtrl"
+            })
+            .otherwise({
+                redirectTo: "/index"
+            });
+        });
+        
+    </script>
+  </head>
+  <body id="page-top" ng-controller="myController">
+    <!-- Navigation-->
+    <nav
+      class="navbar navbar-expand-lg navbar-light fixed-top py-3"
+      id="mainNav"
+      ng-include="'module/menu.html'"
+    >
+      
+    </nav>
+    <!-- Masthead-->
+    <header class="masthead" ng-include="'module/header.html'">
+      
+    </header>
+    <!-- About section-->
+
+      <ng-view>
+
+      </ng-view>
+    <!-- Footer-->
+    <footer class="bg-light py-5" ng-include="'module/footer.html'">
+      
+    </footer>
+
+    <!-- Bootstrap core JS-->
+  </body>
+  <script src="js/controller/changepassCtrl.js"></script>
+  <script src="js/controller/loginCtrl.js"></script>
+  <script src="js/controller/resetCtrl.js"></script>
+  <script src="js/controller/signupCtrl.js"></script>
+  <script src="js/controller/testCtrl.js"></script>
+  <script src="js/controller/updateCtrl.js"></script>
+</html>

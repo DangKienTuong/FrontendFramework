@@ -19,6 +19,7 @@ app.controller("resetCtrl", function ($scope, $http) {
           return 1;
         } else {
           alert("Username và email không tồn tại");
+          return 1;
         }
       }
       return 0;

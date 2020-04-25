@@ -61,7 +61,7 @@
             <div class="form-group">
               <label for="">Birthday</label
               ><input
-                ng-model="student.birthday"
+                ng-model="student.birthday | date: 'dd-MM-yyyy'"
                 type="text"
                 class="form-control"
               />
@@ -73,49 +73,17 @@
               type="button"
               class="btn btn-danger"
               ng-click="update()"
-              ng-hide="index==-1"
             >
               Sửa
             </button>
             <button type="button" class="btn btn-danger" ng-click="cancel()">
               Hủy
             </button>
-            <button type="button" class="btn btn-danger" ng-click="clear()">
-              Mới
-            </button>
           </div>
-        </div>
-        <div>
-          <table class="table">
-            <thead>
-              <tr>
-                <td>Username</td>
-                <td>Password</td>
-                <td>Fullname</td>
-                <td>Email</td>
-                <td>Gender</td>
-                <td>Birthday</td>
-                <td>Chức năng</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{{students[0].username}}</td>
-                <td>{{students[0].password}}</td>
-                <td>{{students[0].fullname}}</td>
-                <td>{{students[0].email}}</td>
-                <td>
-                  {{students[0].gender}}
-                </td>
-                <td>{{students[0].birthday | date: 'dd-MM-yyyy'}}</td>
-
-                <td><a ng-click="edit(0)">Sửa</a></td>
-              </tr>
-            </tbody>
-          </table>
         </div>
       </form>
       </div>
+
     </section>
 
     <!-- Bootstrap core JS-->

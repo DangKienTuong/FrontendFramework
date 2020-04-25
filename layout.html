@@ -90,14 +90,22 @@
     <script src="js/main.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular-route.js"></script>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular-cookies.js"></script>
   <script src="js/controller/indexCtrl.js"></script>
     <script>
-      var app = angular.module("myApp", ["ngRoute"]);
-      app.controller("myController", function ($scope, $http) {
+      var app = angular.module("myApp", ["ngRoute","ngCookies"]);
+      app.controller("myController", function ($scope, $http,$cookies,$rootScope) {
     $http.get("db/Subjects.js").then(function (response) {
   $scope.subjects = response.data;
 });
+$scope.logout = function(){
+        $cookies.remove('user');
+        $cookies.remove('fLogin');
+
+        $rootScope.user = "";
+        $rootScope.fLogin = false;
+        window.location.href = "layout.html"
+    }
   });
       app.config(function($routeProvider){
           $routeProvider
@@ -105,7 +113,8 @@
                 templateUrl: "index.html?"+Math.random()
             })
             .when("/all",{
-                templateUrl: "all.html?"+Math.random()
+                templateUrl: "all.html?"+Math.random(),
+                controller: "allCtrl"
             })
             .when("/feedback",{
                 templateUrl: "feedback.html?"+Math.random()
@@ -130,7 +139,7 @@
                 templateUrl: "signup.html?"+Math.random(),
                 controller: "signupCtrl"
             })
-            .when("/test",{
+            .when("/test/:mh/:ten",{
                 templateUrl: "test.html?"+Math.random(),
                 controller: "testCtrl"
             })
@@ -176,4 +185,6 @@
   <script src="js/controller/signupCtrl.js"></script>
   <script src="js/controller/testCtrl.js"></script>
   <script src="js/controller/updateCtrl.js"></script>
+  <script src="js/controller/allCtrl.js"></script>
+  <script src="js/controller/logoutCtrl.js"></script>
 </html>

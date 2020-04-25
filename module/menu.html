@@ -40,7 +40,7 @@
         >
           Explore all courses
         </button>
-        <a class="dropdown-item" ng-repeat="x in subjects" href="#!test"
+        <a class="dropdown-item" ng-repeat="x in subjects" href="#!test/{{x.Id}}/{{x.Name}}"
           >{{x.Name}}</a
         >
       </div>
@@ -69,16 +69,16 @@
             aria-expanded="false"
           >
             <i class="fas fa-user-circle"></i>
-            Account
+            Account <span class="badge badge-pill badge-warning">{{user}}</span>
           </a>
           <div
             class="dropdown-menu"
             aria-labelledby="navbarDropdownMenuLink"
           >
             <a class="dropdown-item" href="#!signup">Sign up</a>
-            <a class="dropdown-item" href="#!login">Login</a>
+            <a class="dropdown-item" href="#!login" ng-hide="fLogin">Login</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#!index">Sign out</a>
+            <a class="dropdown-item" href="#!index" ng-click="logout()">Sign out</a>
             <a class="dropdown-item" href="#!changepass"
               >Change password</a
             >
@@ -109,3 +109,4 @@
       </ul>
     </div>
   </div>
+

@@ -8,7 +8,7 @@
           <div class="row">
             <div class="col-sm-10">
               <span class="font-weight-bold">
-                Lập trình Android nâng cao
+                {{tenMonHoc}}
               </span>
             </div>
             <div class="col-sm-2">
@@ -19,8 +19,8 @@
           </div>
         </div>
         <div class="card-body">
-          <div ng-repeat="quiz in quizs">
-            <div class="alert alert-4">{{$index+1}}. {{quiz.Text}}</div>
+          <div ng-repeat="quiz in quizs|limitTo:1:begin">
+            <div class="alert alert-4">{{begin+1}}. {{quiz.Text}}</div>
             <div class="pl-3" ng-repeat="ans in quiz.Answers">
               <div class="form-check">
                 <input
@@ -36,12 +36,33 @@
           </div>
         </div>
         <div class="card-footer font-weight-bold">
-          TỔNG ĐIỂM:
-          <span class="badge badge-pill badge-success">{{tong_diem}}/{{quizs.length}}</span>
+          <button ng-click="xacnhan()" class="btn btn-success">Chấm điểm</button>
+          
         </div>
       </div>
     </div>
   </div>
+
+  <br />
+  <br />
+  <br />
+  <!--Pagination-->
+  <div class="row">
+    <div class="col-sm-6"></div>
+    <div class="col-sm-3">
+      <ul class="pagination justify-content-center">
+        <li><a ng-click="first()"><i class="far fa-hand-point-up"></i></a></li>
+        <li><a ng-click="prev()"><i class="far fa-hand-point-left"></i></a></li>
+        <li><a ng-click="next()"><i class="far fa-hand-point-right"></i></a></li>
+        <li><a ng-click="last()"><i class="far fa-hand-point-down"></i></a></li>
+      </ul>
+    </div>
+    <br><br>
+  </div>
+
+  <!-- End Pagination -->
+  <!-- partial -->
+  <script src="./pagination.js"></script>
     </section>
 
 

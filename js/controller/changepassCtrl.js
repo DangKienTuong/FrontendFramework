@@ -22,6 +22,7 @@ app.controller("changepassCtrl", function ($scope, $http) {
           return 1;
         } else {
           alert("Thất bại!");
+          return 1;
         }
       }
       return 0;
